@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Manvi ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+background:black;
+}
+
+/* Background */
+.background{
+position:fixed;
+width:100%;
+height:100%;
+background:url("manvi.jpg") center/cover no-repeat;
+filter:blur(10px) brightness(55%);
+z-index:-2;
+animation:zoom 25s infinite alternate ease-in-out;
+}
+
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.12);}
+}
+
+/* Overlay */
+.overlay{
+position:fixed;
+width:100%;
+height:100%;
+background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+z-index:-1;
+}
+
+/* Floating hearts */
+.heart{
+position:absolute;
+color:#ff4d6d;
+font-size:20px;
+animation:float 6s linear infinite;
+opacity:0.8;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh) scale(0);}
+100%{transform:translateY(-10vh) scale(1.5);}
+}
+
+/* Card */
+.card{
+backdrop-filter:blur(20px);
+background:rgba(255,255,255,0.08);
+padding:40px;
+border-radius:25px;
+text-align:center;
+width:90%;
+max-width:500px;
+box-shadow:0 0 50px rgba(255,0,90,0.4);
+animation:fadeIn 2s ease;
+}
+
+h1{
+font-size:2.8rem;
+font-weight:800;
+margin-bottom:15px;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px #ff4d6d;}
+to{text-shadow:0 0 30px #ff4d6d,0 0 60px #ff4d6d;}
+}
+
+.typing{
+font-size:1.2rem;
+min-height:40px;
+margin-bottom:20px;
+}
+
+button{
+padding:12px 28px;
+border:none;
+border-radius:30px;
+background:#ff4d6d;
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+background:#ff2e63;
+}
+
+.signature{
+margin-top:25px;
+font-size:1rem;
+opacity:0.9;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="overlay"></div>
+
+<div class="card">
+<h1>Manvi ❤️</h1>
+<div class="typing" id="typing"></div>
+<button onclick="startLove()">Feel My Heart</button>
+<div class="signature">
+Forever Yours,<br>
+<b>Dev Garg</b>
+</div>
+</div>
+
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* Typing Animation */
+const text = "You are not just special... You are my entire universe.";
+let i = 0;
+function typeWriter(){
+if(i < text.length){
+document.getElementById("typing").innerHTML += text.charAt(i);
+i++;
+setTimeout(typeWriter, 60);
+}
+}
+
+/* Start everything */
+function startLove(){
+document.getElementById("bgMusic").play();
+typeWriter();
+}
+
+/* Floating hearts */
+setInterval(function(){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+10)+"px";
+heart.style.animationDuration=(Math.random()*3+3)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+},300);
+
+</script>
+
+</body>
+</html>
