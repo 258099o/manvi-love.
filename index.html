@@ -1,165 +1,245 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Manvi</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:black;color:white;font-family:'Poppins',sans-serif;overflow:hidden;transition:1s;}
+
+.center{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
 }
 
-body {
-    overflow: hidden;
-    font-family: 'Poppins', sans-serif;
-    background: black;
-    color: white;
+.fadeText{
+font-family:'Playfair Display',serif;
+font-size:28px;
+opacity:0;
+animation:fadeIn 3s forwards;
 }
 
-/* Background Image */
-.bg {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: url("1741153221369.jpg") center/cover no-repeat;
-    filter: blur(8px) brightness(0.5);
-    transform: scale(1.1);
-    animation: zoom 20s infinite alternate ease-in-out;
+@keyframes fadeIn{to{opacity:1;}}
+@keyframes fadeOut{to{opacity:0;}}
+
+/* Password */
+input{
+padding:10px;
+border-radius:20px;
+border:none;
+text-align:center;
+margin-top:20px;
 }
 
-@keyframes zoom {
-    from { transform: scale(1.1); }
-    to { transform: scale(1.2); }
+button{
+margin-top:20px;
+padding:10px 25px;
+border-radius:25px;
+border:none;
+cursor:pointer;
+transition:0.3s;
 }
 
-/* Overlay */
-.overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+.no{
+background:black;
+color:white;
+border:1px solid white;
+position:relative;
 }
 
-/* Center Card */
-.container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    width: 90%;
-    max-width: 700px;
-    backdrop-filter: blur(15px);
-    background: rgba(255,255,255,0.05);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 0 40px rgba(255,255,255,0.1);
-    opacity: 0;
-    animation: fadeIn 3s forwards 2s;
+.page{display:none;}
+
+.glow{
+position:absolute;
+width:450px;
+height:450px;
+background:radial-gradient(circle, rgba(255,200,120,0.6) 0%, transparent 70%);
+border-radius:50%;
+animation:pulse 4s infinite;
 }
 
-@keyframes fadeIn {
-    to { opacity: 1; }
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.2);}
+100%{transform:scale(1);}
 }
 
-h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 38px;
-    margin-bottom: 20px;
+img{
+width:320px;
+border-radius:20px;
+animation:zoom 15s infinite alternate ease-in-out;
+z-index:2;
 }
 
-p {
-    font-size: 18px;
-    line-height: 1.8;
-    opacity: 0.9;
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.1);}
 }
 
-/* Button */
-button {
-    margin-top: 30px;
-    padding: 12px 30px;
-    font-size: 16px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    background: white;
-    color: black;
-    transition: 0.4s;
+.kiss{
+position:absolute;
+font-size:30px;
+animation:fly 4s linear forwards;
 }
 
-button:hover {
-    background: black;
-    color: white;
-    border: 1px solid white;
+@keyframes fly{
+0%{opacity:1;transform:translateY(0);}
+100%{opacity:0;transform:translateY(-600px) scale(2);}
 }
 
-/* Proposal Section */
-.proposal {
-    margin-top: 30px;
-    font-size: 24px;
-    display: none;
-    font-family: 'Playfair Display', serif;
+.light{
+position:absolute;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+opacity:0.6;
+animation:floatLight 7s linear infinite;
 }
 
-.yes-btn {
-    margin-top: 20px;
-    background: #ffffff;
+@keyframes floatLight{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
 }
 
-.no-btn {
-    position: relative;
+.secret{
+position:absolute;
+font-family:'Playfair Display',serif;
+font-size:32px;
+opacity:0;
+animation:fadeIn 3s forwards;
+}
+
+.firework{
+position:absolute;
+width:6px;
+height:6px;
+background:gold;
+border-radius:50%;
+animation:explode 1s linear forwards;
+}
+
+@keyframes explode{
+0%{opacity:1;}
+100%{transform:translate(var(--x),var(--y));opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg"></div>
-<div class="overlay"></div>
-
 <audio id="music" loop>
-    <source src="Hua_Hain_Aaj_Pehli_Baar.mp3" type="audio/mp3">
+<source src="Hua_Hain_Aaj_Pehli_Baar.mp3" type="audio/mp3">
 </audio>
 
-<div class="container">
-    <h1>Manvi</h1>
-    <p id="text">
-        Some people enter your life quietly...
-        and without warning,
-        they become your entire world.
-        <br><br>
-        You did not just walk into my life.
-        You changed it.
-    </p>
+<div class="center" id="intro">
+<div class="fadeText">In a world full of noise…</div>
+</div>
 
-    <button onclick="start()">Begin</button>
+<div class="center page" id="password">
+<h2>Enter The Code</h2>
+<input type="password" id="pass">
+<button onclick="unlock()">Unlock</button>
+</div>
 
-    <div class="proposal" id="proposal">
-        Will you be my forever?
-        <br>
-        <button class="yes-btn">Yes</button>
-        <button class="no-btn" onmouseover="moveButton(this)">No</button>
-    </div>
+<div class="center page" id="page1">
+<h1 style="font-family:'Playfair Display',serif;font-size:40px;">Manvi</h1>
+<p>Some people enter your life quietly…<br>and without warning,<br>they become your entire world.</p>
+<button onclick="toPhoto()">Continue</button>
+</div>
+
+<div class="center page" id="page2">
+<div class="glow"></div>
+<img src="1741153221369.jpg">
+<div style="margin-top:30px;font-family:'Playfair Display',serif;font-size:28px;">
+Will you be my forever?
+</div>
+<button onclick="yes()">Yes</button>
+<button class="no" onmouseover="moveNo(this)">No</button>
 </div>
 
 <script>
-function start() {
-    document.getElementById("music").play();
-    setTimeout(() => {
-        document.getElementById("proposal").style.display = "block";
-    }, 4000);
+
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+document.getElementById("password").style.display="flex";
+},4000);
+
+function unlock(){
+if(document.getElementById("pass").value==="143"){
+document.getElementById("password").style.display="none";
+document.getElementById("page1").style.display="flex";
+document.getElementById("music").play();
+}else{
+document.body.style.background="darkred";
+setTimeout(()=>document.body.style.background="black",300);
+}
 }
 
-function moveButton(button) {
-    button.style.position = "absolute";
-    button.style.top = Math.random() * 300 + "px";
-    button.style.left = Math.random() * 300 + "px";
+function toPhoto(){
+document.getElementById("page1").style.display="none";
+document.getElementById("page2").style.display="flex";
+launchKisses();
+createLights();
 }
+
+function launchKisses(){
+let i=setInterval(()=>{
+let k=document.createElement("div");
+k.className="kiss";
+k.innerHTML="💋";
+k.style.left=Math.random()*100+"vw";
+k.style.top="75vh";
+document.body.appendChild(k);
+setTimeout(()=>k.remove(),4000);
+},1000);
+setTimeout(()=>clearInterval(i),8000);
+}
+
+function createLights(){
+for(let i=0;i<50;i++){
+let l=document.createElement("div");
+l.className="light";
+l.style.left=Math.random()*100+"vw";
+l.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(l);
+}
+}
+
+function moveNo(btn){
+btn.style.left=Math.random()*200+"px";
+btn.style.top=Math.random()*200+"px";
+}
+
+function yes(){
+document.body.innerHTML+="<div class='secret'>Forever starts now, Manvi.<br>- Dev</div>";
+fireworks();
+}
+
+function fireworks(){
+for(let i=0;i<100;i++){
+let f=document.createElement("div");
+f.className="firework";
+f.style.left="50%";
+f.style.top="50%";
+f.style.setProperty('--x',(Math.random()*500-250)+"px");
+f.style.setProperty('--y',(Math.random()*500-250)+"px");
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1000);
+}
+}
+
 </script>
 
 </body>
