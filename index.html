@@ -1,241 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Manvi ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+<title>For Manvi</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-
-body{
-height:100vh;
-overflow:hidden;
-display:flex;
-justify-content:center;
-align-items:center;
-color:white;
-background:black;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Background */
-.background{
-position:fixed;
-width:100%;
-height:100%;
-background:url("1741153221369.jpg") center/cover no-repeat;
-filter:blur(8px) brightness(55%);
-z-index:-2;
-animation:zoom 25s infinite alternate ease-in-out;
+body {
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: black;
+    color: white;
 }
 
-@keyframes zoom{
-from{transform:scale(1);}
-to{transform:scale(1.12);}
+/* Background Image */
+.bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url("1741153221369.jpg") center/cover no-repeat;
+    filter: blur(8px) brightness(0.5);
+    transform: scale(1.1);
+    animation: zoom 20s infinite alternate ease-in-out;
 }
 
-.overlay{
-position:fixed;
-width:100%;
-height:100%;
-background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
-z-index:-1;
+@keyframes zoom {
+    from { transform: scale(1.1); }
+    to { transform: scale(1.2); }
 }
 
-/* Card */
-.card{
-backdrop-filter:blur(20px);
-background:rgba(255,255,255,0.08);
-padding:35px;
-border-radius:25px;
-text-align:center;
-width:90%;
-max-width:500px;
-box-shadow:0 0 60px rgba(255,0,90,0.4);
+/* Overlay */
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
 }
 
-h1{
-font-size:2.5rem;
-margin-bottom:10px;
+/* Center Card */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%;
+    max-width: 700px;
+    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.05);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(255,255,255,0.1);
+    opacity: 0;
+    animation: fadeIn 3s forwards 2s;
 }
 
-.typing{
-min-height:40px;
-margin-bottom:15px;
+@keyframes fadeIn {
+    to { opacity: 1; }
 }
 
-button{
-padding:10px 25px;
-border:none;
-border-radius:30px;
-background:#ff4d6d;
-color:white;
-font-weight:600;
-cursor:pointer;
-margin-top:10px;
-transition:0.3s;
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    margin-bottom: 20px;
 }
 
-button:hover{
-transform:scale(1.1);
-background:#ff2e63;
+p {
+    font-size: 18px;
+    line-height: 1.8;
+    opacity: 0.9;
 }
 
-.small-photo{
-width:120px;
-height:120px;
-border-radius:50%;
-object-fit:cover;
-margin-bottom:15px;
-border:3px solid #ff4d6d;
+/* Button */
+button {
+    margin-top: 30px;
+    padding: 12px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: white;
+    color: black;
+    transition: 0.4s;
 }
 
-.countdown{
-margin-top:10px;
-font-size:0.9rem;
-opacity:0.9;
+button:hover {
+    background: black;
+    color: white;
+    border: 1px solid white;
 }
 
-/* Hearts */
-.heart{
-position:absolute;
-color:#ff4d6d;
-animation:float 6s linear infinite;
+/* Proposal Section */
+.proposal {
+    margin-top: 30px;
+    font-size: 24px;
+    display: none;
+    font-family: 'Playfair Display', serif;
 }
 
-@keyframes float{
-0%{transform:translateY(100vh) scale(0);}
-100%{transform:translateY(-10vh) scale(1.5);}
+.yes-btn {
+    margin-top: 20px;
+    background: #ffffff;
 }
 
-/* Hidden Proposal */
-#proposal{
-display:none;
-font-size:1.5rem;
-margin-top:15px;
-color:#ff4d6d;
+.no-btn {
+    position: relative;
 }
-
-.password-screen{
-position:absolute;
-width:100%;
-height:100%;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:5;
-}
-
-input{
-padding:8px;
-border-radius:10px;
-border:none;
-margin-top:10px;
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="password-screen" id="lock">
-<h2>Enter Secret Code ❤️</h2>
-<input type="password" id="pass" placeholder="Enter code">
-<button onclick="unlock()">Unlock</button>
-</div>
-
-<div class="background"></div>
+<div class="bg"></div>
 <div class="overlay"></div>
 
-<div class="card" id="mainContent" style="display:none;">
-<img src="1741153221369.jpg" class="small-photo">
-<h1>Manvi ❤️</h1>
-<div class="typing" id="typing"></div>
-<button onclick="startLove()">Start Magic</button>
-<div class="countdown" id="countdown"></div>
-<div id="proposal">Will You Be Mine Forever? 💍</div>
-</div>
-
-<audio id="bgMusic" loop>
-<source src="Hua_Hain_Aaj_Pehli_Baar.mp3" type="audio/mpeg">
+<audio id="music" loop>
+    <source src="Hua_Hain_Aaj_Pehli_Baar.mp3" type="audio/mp3">
 </audio>
 
+<div class="container">
+    <h1>Manvi</h1>
+    <p id="text">
+        Some people enter your life quietly...
+        and without warning,
+        they become your entire world.
+        <br><br>
+        You did not just walk into my life.
+        You changed it.
+    </p>
+
+    <button onclick="start()">Begin</button>
+
+    <div class="proposal" id="proposal">
+        Will you be my forever?
+        <br>
+        <button class="yes-btn">Yes</button>
+        <button class="no-btn" onmouseover="moveButton(this)">No</button>
+    </div>
+</div>
+
 <script>
-
-/* PASSWORD */
-function unlock(){
-let password="143"; 
-if(document.getElementById("pass").value===password){
-document.getElementById("lock").style.display="none";
-document.getElementById("mainContent").style.display="block";
-}
-else{
-alert("Wrong code ❤️");
-}
+function start() {
+    document.getElementById("music").play();
+    setTimeout(() => {
+        document.getElementById("proposal").style.display = "block";
+    }, 4000);
 }
 
-/* Typing */
-const text="You are not just special... You are my destiny.";
-let i=0;
-function typeWriter(){
-if(i<text.length){
-document.getElementById("typing").innerHTML+=text.charAt(i);
-i++;
-setTimeout(typeWriter,50);
+function moveButton(button) {
+    button.style.position = "absolute";
+    button.style.top = Math.random() * 300 + "px";
+    button.style.left = Math.random() * 300 + "px";
 }
-}
-
-/* Countdown (example date) */
-let target=new Date("Dec 31, 2026 00:00:00").getTime();
-setInterval(function(){
-let now=new Date().getTime();
-let distance=target-now;
-let days=Math.floor(distance/(1000*60*60*24));
-document.getElementById("countdown").innerHTML="Days until our future: "+days;
-},1000);
-
-/* Start */
-function startLove(){
-document.getElementById("bgMusic").play();
-typeWriter();
-setTimeout(function(){
-document.getElementById("proposal").style.display="block";
-fireworks();
-},5000);
-}
-
-/* Hearts */
-setInterval(function(){
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(Math.random()*20+10)+"px";
-heart.style.animationDuration=(Math.random()*3+3)+"s";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),6000);
-},300);
-
-/* Simple Fireworks */
-function fireworks(){
-for(let i=0;i<50;i++){
-let spark=document.createElement("div");
-spark.style.position="absolute";
-spark.style.width="6px";
-spark.style.height="6px";
-spark.style.background="gold";
-spark.style.borderRadius="50%";
-spark.style.left=Math.random()*100+"vw";
-spark.style.top=Math.random()*100+"vh";
-spark.style.animation="fade 1s linear";
-document.body.appendChild(spark);
-setTimeout(()=>spark.remove(),1000);
-}
-}
-
 </script>
 
 </body>
