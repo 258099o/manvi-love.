@@ -4,16 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Manvi ❤️</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
 body{
 height:100vh;
@@ -31,7 +25,7 @@ position:fixed;
 width:100%;
 height:100%;
 background:url("1741153221369.jpg") center/cover no-repeat;
-filter:blur(10px) brightness(55%);
+filter:blur(8px) brightness(55%);
 z-index:-2;
 animation:zoom 25s infinite alternate ease-in-out;
 }
@@ -41,68 +35,45 @@ from{transform:scale(1);}
 to{transform:scale(1.12);}
 }
 
-/* Overlay */
 .overlay{
 position:fixed;
 width:100%;
 height:100%;
-background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
 z-index:-1;
-}
-
-/* Floating hearts */
-.heart{
-position:absolute;
-color:#ff4d6d;
-font-size:20px;
-animation:float 6s linear infinite;
-opacity:0.8;
-}
-
-@keyframes float{
-0%{transform:translateY(100vh) scale(0);}
-100%{transform:translateY(-10vh) scale(1.5);}
 }
 
 /* Card */
 .card{
 backdrop-filter:blur(20px);
 background:rgba(255,255,255,0.08);
-padding:40px;
+padding:35px;
 border-radius:25px;
 text-align:center;
 width:90%;
 max-width:500px;
-box-shadow:0 0 50px rgba(255,0,90,0.4);
-animation:fadeIn 2s ease;
+box-shadow:0 0 60px rgba(255,0,90,0.4);
 }
 
 h1{
-font-size:2.8rem;
-font-weight:800;
-margin-bottom:15px;
-animation:glow 2s infinite alternate;
-}
-
-@keyframes glow{
-from{text-shadow:0 0 10px #ff4d6d;}
-to{text-shadow:0 0 30px #ff4d6d,0 0 60px #ff4d6d;}
+font-size:2.5rem;
+margin-bottom:10px;
 }
 
 .typing{
-font-size:1.2rem;
 min-height:40px;
-margin-bottom:20px;
+margin-bottom:15px;
 }
 
 button{
-padding:12px 28px;
+padding:10px 25px;
 border:none;
 border-radius:30px;
 background:#ff4d6d;
 color:white;
 font-weight:600;
 cursor:pointer;
+margin-top:10px;
 transition:0.3s;
 }
 
@@ -111,32 +82,81 @@ transform:scale(1.1);
 background:#ff2e63;
 }
 
-.signature{
-margin-top:25px;
-font-size:1rem;
+.small-photo{
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:15px;
+border:3px solid #ff4d6d;
+}
+
+.countdown{
+margin-top:10px;
+font-size:0.9rem;
 opacity:0.9;
 }
 
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(30px);}
-to{opacity:1; transform:translateY(0);}
+/* Hearts */
+.heart{
+position:absolute;
+color:#ff4d6d;
+animation:float 6s linear infinite;
 }
+
+@keyframes float{
+0%{transform:translateY(100vh) scale(0);}
+100%{transform:translateY(-10vh) scale(1.5);}
+}
+
+/* Hidden Proposal */
+#proposal{
+display:none;
+font-size:1.5rem;
+margin-top:15px;
+color:#ff4d6d;
+}
+
+.password-screen{
+position:absolute;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:5;
+}
+
+input{
+padding:8px;
+border-radius:10px;
+border:none;
+margin-top:10px;
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="password-screen" id="lock">
+<h2>Enter Secret Code ❤️</h2>
+<input type="password" id="pass" placeholder="Enter code">
+<button onclick="unlock()">Unlock</button>
+</div>
+
 <div class="background"></div>
 <div class="overlay"></div>
 
-<div class="card">
+<div class="card" id="mainContent" style="display:none;">
+<img src="1741153221369.jpg" class="small-photo">
 <h1>Manvi ❤️</h1>
 <div class="typing" id="typing"></div>
-<button onclick="startLove()">Feel My Heart</button>
-<div class="signature">
-Forever Yours,<br>
-<b>Dev Garg</b>
-</div>
+<button onclick="startLove()">Start Magic</button>
+<div class="countdown" id="countdown"></div>
+<div id="proposal">Will You Be Mine Forever? 💍</div>
 </div>
 
 <audio id="bgMusic" loop>
@@ -145,24 +165,49 @@ Forever Yours,<br>
 
 <script>
 
-/* Typing Animation */
-const text = "You are not just special... You are my entire universe.";
-let i = 0;
-function typeWriter(){
-if(i < text.length){
-document.getElementById("typing").innerHTML += text.charAt(i);
-i++;
-setTimeout(typeWriter, 60);
+/* PASSWORD */
+function unlock(){
+let password="143"; 
+if(document.getElementById("pass").value===password){
+document.getElementById("lock").style.display="none";
+document.getElementById("mainContent").style.display="block";
+}
+else{
+alert("Wrong code ❤️");
 }
 }
 
-/* Start everything */
+/* Typing */
+const text="You are not just special... You are my destiny.";
+let i=0;
+function typeWriter(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typeWriter,50);
+}
+}
+
+/* Countdown (example date) */
+let target=new Date("Dec 31, 2026 00:00:00").getTime();
+setInterval(function(){
+let now=new Date().getTime();
+let distance=target-now;
+let days=Math.floor(distance/(1000*60*60*24));
+document.getElementById("countdown").innerHTML="Days until our future: "+days;
+},1000);
+
+/* Start */
 function startLove(){
 document.getElementById("bgMusic").play();
 typeWriter();
+setTimeout(function(){
+document.getElementById("proposal").style.display="block";
+fireworks();
+},5000);
 }
 
-/* Floating hearts */
+/* Hearts */
 setInterval(function(){
 let heart=document.createElement("div");
 heart.className="heart";
@@ -173,6 +218,23 @@ heart.style.animationDuration=(Math.random()*3+3)+"s";
 document.body.appendChild(heart);
 setTimeout(()=>heart.remove(),6000);
 },300);
+
+/* Simple Fireworks */
+function fireworks(){
+for(let i=0;i<50;i++){
+let spark=document.createElement("div");
+spark.style.position="absolute";
+spark.style.width="6px";
+spark.style.height="6px";
+spark.style.background="gold";
+spark.style.borderRadius="50%";
+spark.style.left=Math.random()*100+"vw";
+spark.style.top=Math.random()*100+"vh";
+spark.style.animation="fade 1s linear";
+document.body.appendChild(spark);
+setTimeout(()=>spark.remove(),1000);
+}
+}
 
 </script>
 
